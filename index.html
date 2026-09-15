@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王子彤 · 个人主页</title>
+<meta name="description" content="王子彤 · 复旦大学国际商务硕士在读。">
+<!--
+  设计参考：github.com/chenqin3/homepage-demo
+  内容来源：王子彤个人简历（内容已按 homepage 场景重写，非简历逐条搬运）
+  隐私说明：简历中的手机号未写入本页；如需展示请自行补充
+-->
+<style>
+  :root{
+    --deep-blue:#1F4E79;
+    --deep-blue-dark:#163A5B;
+    --cream:#FAF7F0;
+    --white:#FFFFFF;
+    --text:#2B2B2B;
+    --muted:#6B6B6B;
+    --border:#E5E0D5;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    background-color:var(--cream);
+    color:var(--text);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .container{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* 顶部 */
+  header{
+    background-color:var(--deep-blue);
+    color:var(--white);
+    padding:64px 0 56px;
+  }
+  header .inner{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .avatar{
+    width:88px;
+    height:88px;
+    border-radius:50%;
+    background-color:var(--cream);
+    color:var(--deep-blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:36px;
+    font-weight:700;
+    flex-shrink:0;
+    box-shadow:0 4px 14px rgba(0,0,0,.18);
+  }
+  header h1{
+    font-size:34px;
+    font-weight:700;
+    letter-spacing:2px;
+  }
+  header .subtitle{
+    font-size:16px;
+    opacity:.92;
+    margin-top:6px;
+    border-left:3px solid rgba(255,255,255,.5);
+    padding-left:12px;
+  }
+
+  /* 通用区块 */
+  section{
+    padding:56px 0;
+  }
+  section h2{
+    font-size:26px;
+    color:var(--deep-blue);
+    margin-bottom:24px;
+    position:relative;
+    padding-bottom:14px;
+    font-weight:700;
+  }
+  section h2::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:56px;
+    height:3px;
+    background-color:var(--deep-blue);
+    border-radius:3px;
+  }
+
+  /* 简介 */
+  .intro p{
+    font-size:17px;
+    color:var(--muted);
+    max-width:720px;
+    margin-bottom:16px;
+  }
+  .intro .highlight{
+    color:var(--deep-blue);
+    font-weight:600;
+  }
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:24px;
+  }
+  .tag{
+    background-color:var(--white);
+    border:1px solid var(--border);
+    color:var(--deep-blue);
+    padding:6px 16px;
+    border-radius:20px;
+    font-size:14px;
+  }
+
+  /* 卡片 */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
+  }
+  .card{
+    background-color:var(--white);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:28px 24px;
+    transition:transform .2s ease, box-shadow .2s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 28px rgba(31,78,121,.14);
+  }
+  .card .icon{
+    width:52px;
+    height:52px;
+    border-radius:12px;
+    background-color:var(--deep-blue);
+    color:var(--white);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    margin-bottom:18px;
+  }
+  .card h3{
+    font-size:19px;
+    color:var(--deep-blue);
+    margin-bottom:10px;
+    font-weight:700;
+    line-height:1.4;
+  }
+  .card p{
+    font-size:15px;
+    color:var(--muted);
+    margin-bottom:14px;
+    flex:1;
+  }
+  .card ul{
+    list-style:none;
+    margin:0 0 14px;
+    flex:1;
+  }
+  .card ul li{
+    font-size:15px;
+    color:var(--muted);
+    padding-left:16px;
+    position:relative;
+    margin-bottom:8px;
+  }
+  .card ul li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:.72em;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background-color:var(--border);
+  }
+  .card .course{
+    font-size:13px;
+    color:var(--deep-blue);
+    background-color:var(--cream);
+    border-radius:6px;
+    padding:8px 12px;
+    align-self:flex-start;
+    font-weight:500;
+  }
+
+  /* 联系方式 */
+  .contact{
+    background-color:var(--deep-blue);
+    color:var(--white);
+    padding:56px 0;
+  }
+  .contact h2{
+    color:var(--white);
+  }
+  .contact h2::after{
+    background-color:var(--cream);
+  }
+  .contact p.intro-line{
+    color:rgba(255,255,255,.9);
+    max-width:600px;
+    margin-bottom:28px;
+  }
+  .contact-items{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .contact-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background-color:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    padding:14px 20px;
+    border-radius:10px;
+    font-size:15px;
+  }
+  .contact-item .label{
+    opacity:.85;
+  }
+  .contact-item a{
+    color:var(--white);
+    font-weight:600;
+    text-decoration:none;
+    border-bottom:1px dashed rgba(255,255,255,.5);
+  }
+  .contact-item a:hover{
+    border-bottom-style:solid;
+  }
+
+  footer{
+    background-color:var(--deep-blue-dark);
+    color:rgba(255,255,255,.75);
+    text-align:center;
+    padding:20px 24px;
+    font-size:13px;
+    letter-spacing:1px;
+  }
+
+  /* 响应式 */
+  @media (max-width:820px){
+    header .inner{
+      justify-content:center;
+      text-align:center;
+    }
+    header .subtitle{
+      border-left:none;
+      padding-left:0;
+    }
+    header{
+      padding:48px 0;
+    }
+    section{
+      padding:44px 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="container inner">
+      <div class="avatar">王</div>
+      <div>
+        <h1>王子彤</h1>
+        <p class="subtitle">复旦大学 · 国际商务硕士在读</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div class="container">
+      <h2>简介</h2>
+      <p>你好，我是<strong class="highlight">王子彤</strong>，<strong class="highlight">复旦大学国际商务</strong>专业硕士在读，本科毕业于<strong class="highlight">上海财经大学市场营销</strong>专业。</p>
+      <p>在读期间，我参与过跨国企业仿真运营、乡村实地调研等课程实践，也做了三年学生工作——从活动统筹到团队机制搭建。比起单点执行，我更在意把一次性的解法沉淀成可复制的机制。</p>
+      <div class="tags">
+        <span class="tag">跨国经营</span>
+        <span class="tag">市场分析</span>
+        <span class="tag">实地调研</span>
+        <span class="tag">活动策划</span>
+        <span class="tag">团队管理</span>
+        <span class="tag">流程与 SOP 沉淀</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects">
+    <div class="container">
+      <h2>项目与实践</h2>
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">🌐</div>
+          <h3>跨国企业仿真运营实验</h3>
+          <ul>
+            <li>以组装公司完成 5 个经营年度全流程操作，协调集团内原料、销售公司配合，实操国内外市场开拓、订单竞争、产能规划与投融资申请。</li>
+            <li>搭建高端产品生产线、规划融资策略，以长期原料合作应对供需失衡，推动企业由亏损实现净利润转正。</li>
+          </ul>
+          <div class="course">2024.09 – 2024.12</div>
+        </div>
+
+        <div class="card">
+          <div class="icon">🌾</div>
+          <h3>千村调查 · 安庆桐城调查团</h3>
+          <ul>
+            <li>采用半结构化访谈与问卷调查法走访上百户人家，独立完成有效问卷 20 份，聚焦农户经济行为与乡村发展现状。</li>
+            <li>运营团队公众号发布 9 篇纪实推文；参与撰写调研报告，获三等奖。</li>
+          </ul>
+          <div class="course">2023.07 – 2023.08</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="campus">
+    <div class="container">
+      <h2>校园经历</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">🎤</div>
+          <h3>上海财经大学商学院学生会</h3>
+          <ul>
+            <li>文艺部部员 → 部长 → 学生会主席。</li>
+            <li>统筹 6 场院校级大型活动（草坪音乐节、迎新 / 毕业晚会等），覆盖 1000+ 人次，零差错落地。</li>
+            <li>建立项目进度管理表与分工机制，搭建活动策划、物料对接、宣传执行 SOP，缓解换届交接痛点。</li>
+          </ul>
+          <div class="course">2023.09 – 2025.06</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="container">
+      <h2>联系方式</h2>
+      <p class="intro-line">如果你对我的经历感兴趣，或者有任何交流与合作的想法，欢迎随时联系我。</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <span class="label">邮箱</span>
+          <a href="mailto:26210680302@m.fudan.edu.cn">26210680302@m.fudan.edu.cn</a>
+        </div>
+        <div class="contact-item">
+          <span class="label">GitHub</span>
+          <a href="https://github.com/Wangzitong0726">Wangzitong0726</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 王子彤
+  </footer>
+
+</body>
+</html>
